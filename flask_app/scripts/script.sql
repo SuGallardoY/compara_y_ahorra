@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `compara_y_ahorra`.`usuarios` (
   `fecha_nacimiento` DATE NULL,
   `correo` VARCHAR(45) NULL,
   `contrasena` VARCHAR(255) NULL,
-  `cliente_empresa` TINYINT NULL,
+  `cliente_empresa` VARCHAR(30) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
