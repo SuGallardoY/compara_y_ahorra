@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <title>Home</title>
+</head>
+<body>
+
+  <header>
+
+    <nav class="navbar navbar-dark bg-dark navegacion">
+      <ul>
+          <li><h3>Bienvenid@ {{user.nombre}}</h3></li>
+      </ul>                      
+          {% if user.cliente_empresa == 'Empresa' %}
+          <a href="/new/producto" class="btn btn-info">Agregar nuevo producto</a>
+          {% endif %}
+          <a href="/logout" class="btn btn-danger">Cerrar sesión</a>
+
+  </nav>
+
+  </header>
+
+    <div class="container">
+       
+
+
+
+
+        {% if user.cliente_empresa == 'Empresa' %}
+
+        <p>Vista administrador<p>
+
+        <h4 class="titulo">Mis productos</h4>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.precio}}</td>
+                    <td>{{producto.stock}}</td>
+                    <td>{{producto.descripcion}}</td>
+                    <td>
+                       
+                        <a href="/edit/producto/{{producto.id}}" class="btn btn-warning">Editar</a>
+                        <a href="/delete/producto/{{producto.id}}" class="btn btn-danger">Borrar</a>
+                       
+                    </td>
+                </tr>
+                    
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+        {% if user.cliente_empresa == 'Empresa' %}
+
+        <h4 class="titulo">Todos los productos</h4>
+
+        {% endif %}
+
+        
+        <div class="card-group">
+          <div class="card">
+            <img src="https://static2.elcontainer.cl/9379-thickbox_default/kit-gamer-xtrike-teclado-mouse-audifonos-pad.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Articulos gamer</h5>
+              <p class="card-text">Mouse, teclados, monitores, controles y muchos más accesorios para fanáticos de los juegos.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/516NDj2O20L.jpg" class="card-img-top imgcard" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Juguetes para mascotas</h5>
+              <p class="card-text">Jueguetes para perros, gatos y otras mascotas..</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/frutos-secos-beneficios-propiedades-1649155590.jpeg?crop=0.668xw:1.00xh;0.195xw,0.00244xh&resize=640:*" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Frutos secos</h5>
+              <p class="card-text">Gran variedad de nutritivos y deliciosos frutos secos.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+       
+
+  
+    
+</body>
+</html>
